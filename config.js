@@ -1,12 +1,12 @@
 module.exports = {
   pathPrefix: '',
-  siteUrl: 'https://rolwinreevan.com',
+  siteUrl: 'https://vaibhavpandit.space',
   siteTitle: 'Vaibhav Sharma',
-  siteDescription: 'Logbook of a software developer',
+  siteDescription: "A catalogue of a Data Scientist's afternoons",
   author: 'Rolwin Reevan',
   postsForArchivePage: 3,
   defaultLanguage: 'en',
-  disqusScript: process.env.DISQUS_SCRIPT || 'https://rolwinreevan.disqus.com/embed.js',
+  // disqusScript: process.env.DISQUS_SCRIPT || 'https://rolwinreevan.disqus.com/embed.js',
   pages: {
     home: '/',
     blog: 'blog',
@@ -21,25 +21,25 @@ module.exports = {
     instagram: 'https://www.instagram.com/spiralling_into_madness',
     rss: '/rss.xml',
   },
-  contactFormUrl: process.env.CONTACT_FORM_ENDPOINT || 'https://getform.io/f/09a3066f-c638-40db-ad59-05e4ed71e451',
+  contactFormUrl: 'https://getform.io/f/fc495a0a-4aa8-4ff1-aaf5-9a217be9c972',
   googleAnalyticTrackingId: process.env.GA_TRACKING_ID || '',
   tags: {
-    javascript: {
-      name: 'javascript',
-      description: 'JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages.',
+    PyTorch: {
+      name: 'Pytorch',
+      description: 'PyTorch is a Machine/Deep Learning Framework developed by Facebook AI Research(FAIR).It has components such as TorchVision for Visual data,TorchText for NLP and TorchAudio for sound data. yIt also has a wide Ecosystem with frameworks built on top of it that support Reinforcement learning,BioInformatics etc',
       color: '#f0da50',
     },
-    nodejs: {
-      name: 'Node.js',
-      description: 'Node.js is a tool for executing JavaScript in a variety of environments.',
+    TensorFlow: {
+      name: 'TensorFlow',
+      description: 'TensorFlow is a Mchine/Deep Learning Framework developed by Google,and has been usd by the Google Brain team for both research and production and also has a submodule tensorflow lite for running it on mobile devices ',
       color: '#90c53f',
     },
-    rxjs: {
-      name: 'RxJS',
-      description: 'RxJS is a library for reactive programming using Observables, for asynchronous operations.',
+    OpenCV: {
+      name: 'opencv',
+      description: 'OpenCV is a library built for developing Computer Vision apps.Developed by Intel in C++, It has wrappers in Python and Java and is the most widely used library in Computer Vision',
       color: '#eb428e',
     },
-    typescript: {
+    Spacy: {
       name: 'typescript',
       description: 'TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.',
       color: '#257acc',

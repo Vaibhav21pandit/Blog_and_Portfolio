@@ -9,8 +9,8 @@ const SkillsProgress = () => (
       <Col xs={24} sm={24} md={12}>
 
         <ProgressBar
-          percent={80}
-          text="Python"
+          percent={90}
+          text="PyTorch/TensorFlow/Keras"
         />
         <ProgressBar
           percent={95}
@@ -18,28 +18,28 @@ const SkillsProgress = () => (
         />
         <ProgressBar
           percent={85}
-          text="PyTorch/TensorFlow/Keras"
+          text="Spacy/PyText"
         />
         <ProgressBar
-          percent={90}
+          percent={80}
           text="Flask/Django"
         />
       </Col>
       <Col xs={24} sm={24} md={12}>
         <ProgressBar
-          percent={70}
-          text="React-Native"
-        />
-        <ProgressBar
-          percent={90}
-          text="Mysql"
-        />
-        <ProgressBar
-          percent={78}
+          percent={80}
           text="AWS[SageMaker,Lambda,S3,E2,Amplify,SQS]"
         />
         <ProgressBar
+          percent={85}
+          text="Pandas/NumPy/CuPy"
+        />
+        <ProgressBar
           percent={80}
+          text="React-Native"
+        />
+        <ProgressBar
+          percent={75}
           text="React/Gatsby"
         />
       </Col>

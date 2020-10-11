@@ -9,13 +9,12 @@ const pageText = {
   paraOne: `Hello !! My name is Vaibhav Sharma. I'm a Deep Learning Engineer with experience in Computer
     Vision and applied knowledge in NLP.
     I am passionate about various new DL Frameworks/Research. I like to experiment with different CV/DL algorithms. 
-    I have an experience of more than 1 years working with Deep Learning frameworks.
-    Other than Deep Learning I love building Web and Mobile apps in React/React Native. 
-    Writing blogs about tech stacks is what I love to do. Check my blog where I write my thoughts out on Tech and the World`,
+    I have experience of more than 1 years working with Deep Learning frameworks.
+    Other than Deep Learning I love building Web and Mobile apps in React/React Native.`,
   paraTwo: `Currently I work mostly with DL Frameworks like PyTorch and Tensorflow. I also
     have hands on experience working with cloud infrastructures like AWS/GCP and have deployed CV applications
-    keeping scalability in mind. Flask and Django are some of the cool
-    tools I use for Deployment. I'm always a learner and a self taught programmer.`,
+    keeping scalability in mind. Flask and Django are some of the
+    tools I use for Deployment. I believe I'm a fast learner and am always ready to try new things out.`,
 };
 
 const AboutMe = () => {
@@ -30,6 +29,7 @@ const AboutMe = () => {
           keywords={['Vaibhav', 'Sharma', 'Pandit', 'Research Engineer', 'Python', 'OpenCV', 'Pytorch', 'Tensorflow']}
         />
         <h1 className="titleSeparate">About Me</h1>
+        <h2 aria-atomic>My love for learning started when school ended</h2>
         <p>
           {pageText.paraOne}
         </p>
@@ -41,16 +41,16 @@ const AboutMe = () => {
             img="location.png"
             height={60}
             alt="location image"
-            textH4="Born and bought up in"
-            textH3="Mangalore, KA, India"
+            textH4="Hometown"
+            textH3="Yamunanagar, Haryana"
           />
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
           <AboutTile
-            img="coffee.png"
-            alt="coffee image"
-            textH4="Love Coffee"
-            textH3="Coffee + Me = Happiness"
+            img="Book.png"
+            alt="Book Image"
+            textH4="Avid Reader"
+            textH3="Love Reading Non-Fiction"
           />
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
@@ -63,10 +63,10 @@ const AboutMe = () => {
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
           <AboutTile
-            img="motorcycle.png"
-            alt="motorcycle image"
-            textH4="Love Riding"
-            textH3="Biker for life"
+            img="mobile.png"
+            alt="bike image"
+            textH4="Builds Mobile Apps"
+            textH3="Deep Learning on Edge Devices"
           />
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
