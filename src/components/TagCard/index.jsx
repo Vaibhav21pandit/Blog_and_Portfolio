@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 import React from 'react';
 import { Link } from 'gatsby';
 import Config from '../../../config';

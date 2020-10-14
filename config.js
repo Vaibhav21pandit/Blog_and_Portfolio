@@ -1,9 +1,10 @@
+/* eslint-disable eol-last */
 module.exports = {
   pathPrefix: '',
   siteUrl: 'https://vaibhavpandit.space',
   siteTitle: 'Vaibhav Sharma',
   siteDescription: "A catalogue of a Data Scientist's afternoons",
-  author: 'Rolwin Reevan',
+  author: 'Vaibhav Sharma',
   postsForArchivePage: 3,
   defaultLanguage: 'en',
   // disqusScript: process.env.DISQUS_SCRIPT || 'https://rolwinreevan.disqus.com/embed.js',
@@ -24,22 +25,22 @@ module.exports = {
   contactFormUrl: 'https://getform.io/f/fc495a0a-4aa8-4ff1-aaf5-9a217be9c972',
   googleAnalyticTrackingId: process.env.GA_TRACKING_ID || '',
   tags: {
-    PyTorch: {
-      name: 'Pytorch',
-      description: 'PyTorch is a Machine/Deep Learning Framework developed by Facebook AI Research(FAIR).It has components such as TorchVision for Visual data,TorchText for NLP and TorchAudio for sound data. yIt also has a wide Ecosystem with frameworks built on top of it that support Reinforcement learning,BioInformatics etc',
+    javascript: {
+      name: 'javascript',
+      description: 'JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages.',
       color: '#f0da50',
     },
-    TensorFlow: {
-      name: 'TensorFlow',
-      description: 'TensorFlow is a Mchine/Deep Learning Framework developed by Google,and has been usd by the Google Brain team for both research and production and also has a submodule tensorflow lite for running it on mobile devices ',
+    nodejs: {
+      name: 'Node.js',
+      description: 'Node.js is a tool for executing JavaScript in a variety of environments.',
       color: '#90c53f',
     },
-    OpenCV: {
-      name: 'opencv',
-      description: 'OpenCV is a library built for developing Computer Vision apps.Developed by Intel in C++, It has wrappers in Python and Java and is the most widely used library in Computer Vision',
+    rxjs: {
+      name: 'RxJS',
+      description: 'RxJS is a library for reactive programming using Observables, for asynchronous operations.',
       color: '#eb428e',
     },
-    Spacy: {
+    typescript: {
       name: 'typescript',
       description: 'TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.',
       color: '#257acc',
