@@ -29,7 +29,6 @@ const AboutMe = () => {
           keywords={['Vaibhav', 'Sharma', 'Pandit', 'Research Engineer', 'Python', 'OpenCV', 'Pytorch', 'Tensorflow']}
         />
         <h1 className="titleSeparate">About Me</h1>
-        <h2 aria-atomic>My love for learning started when school ended</h2>
         <p>
           {pageText.paraOne}
         </p>
