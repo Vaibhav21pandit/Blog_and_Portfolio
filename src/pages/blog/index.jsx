@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -14,9 +16,9 @@ const Blog = ({ data }) => (
       <Header />
       <SEO
         title="Blog"
-        description="I like blogging about various web technologies and other stuff related to
-          javascript and other trends like graphql, prisma etc. This blog expresses my views of various technologies
-          and scenarios I have come across in realtime."
+        description="This blog is my attempt to jot down what I've learnt developing Computer Vision and mobile apps
+          and scenarios I have come across in realtime. With time I will try to write about more varied topics
+          that I encounter and find cool enough"
         path="blog"
       />
       <SidebarWrapper>

@@ -1,3 +1,4 @@
+ /*eslint-disable */
 import React from 'react';
 import { Layout } from 'antd';
 import Header from '../components/PageLayout/Header';
@@ -23,3 +24,4 @@ export default () => (
     </Layout>
   </Layout>
 );
+ /* eslint-disable */
