@@ -7,13 +7,12 @@ import SEO from '../../Seo';
 
 const pageText = {
   paraOne: `Hello !! My name is Vaibhav Sharma. I'm a Deep Learning Engineer with experience in Computer
-    Vision and applied knowledge in NLP.
-    I am passionate about various new DL Frameworks/Research. I like to experiment with different CV/DL algorithms. 
-    I have experience of more than 1 years working with Deep Learning frameworks.
+    Vision and applied knowledge in NLP & Audio Processing.
+    A perpetual explorer of the DL realm, I like to experiment with different algorithms and frameworks for CV and NLP. 
     Other than Deep Learning I love building Web and Mobile apps in React/React Native.`,
-  paraTwo: `Currently I work mostly with DL Frameworks like PyTorch and Tensorflow. I also
-    have hands on experience working with cloud infrastructures like AWS/GCP and have deployed CV applications
-    keeping scalability in mind. Flask and Django are some of the
+  paraTwo: `Currently my professional experience mainly includes Computer Vision and I also
+    have hands on experience working with cloud infrastructures like AWS/GCP. I have deployed numerous CV applications
+    both personal and professional, keeping scalability in mind. Flask and Django are some of the
     tools I use for Deployment. I believe I'm a fast learner and am always ready to try new things out.`,
 };
 

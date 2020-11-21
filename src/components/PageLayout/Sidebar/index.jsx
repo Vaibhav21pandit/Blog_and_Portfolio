@@ -26,7 +26,7 @@ const DomContent = () => (
           <span>Sharma</span>
         </h2>
       </div>
-      <div className={`${style.badge} ${style.badgeGray}`}>Research Engineer</div>
+      <div className={`${style.badge} ${style.badgeGray}`}>Data Scientist</div>
       <div className="centerAlign box">
         <a href={facebook} target="_blank" label="button" rel="noopener noreferrer"><FA name="facebook-f" /></a>
         <a href={twitter} target="_blank" label="button" rel="noopener noreferrer"><FA name="twitter" /></a>
@@ -44,7 +44,7 @@ const DomContent = () => (
         <li className={`${style.contactBlockItem}`}>
           <span><FeatherIcon size="19" icon="map-pin" /></span>
           {' '}
-&nbsp; &nbsp; Bangalore, India
+&nbsp; &nbsp; Chandigarh, India
         </li>
         <li className={`${style.contactBlockItem}`}>
           <span><FeatherIcon size="19" icon="mail" /></span>

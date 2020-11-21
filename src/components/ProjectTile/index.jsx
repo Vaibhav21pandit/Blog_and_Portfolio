@@ -17,8 +17,8 @@ const AboutTile = (props) => {
         />
       </div>
       <div className={`textCenter ${style.mrTp26PX}`}>
-        <h2><a onMouseOverCapture={()=>setColor('gray')} style={{color:Color,fontWeight:400}} href={url}>{ textH4 || ''}</a></h2>
-        <p>{textH3 || '' }</p>
+        <h2><a onMouseOverCapture={()=>setColor('gray')} style={{color:Color,fontWeight:100}} href={url}>{ textH4 || ''}</a></h2>
+        <p style={{fontWeight:'bold',marginRight:3,marginLeft:3}}>{textH3 || '' }</p>
       </div>
     </div>
   );

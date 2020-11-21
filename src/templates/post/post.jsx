@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Header from '../../components/PageLayout/Header';
-import SidebarWrapper from '../../components/PageLayout/Sidebar';
+// import SidebarWrapper from '../../components/PageLayout/Sidebar';
 import SEO from '../../components/Seo';
 import Comment from '../../components/Comment';
 import Config from '../../../config';
@@ -31,19 +31,19 @@ const Post = ({ data }) => {
           title={title}
           description={excerpt}
           path={path}
-          keywords={['Rolwin', 'Reevan', 'Monteiro', 'FullStack developer', 'Javascript', 'ReactJS', 'NodeJS', 'Gatsby', 'technology']}
+          keywords={['Vaibhav Pandit',"Vaibhav Sharma","Vaibhav","Deep Learning","COmputer Vision","CNN","RCNN","Object Detection"]}
         />
         <Header />
-        <SidebarWrapper>
-          <div className="marginTopTitle">
-            <h1>{title}</h1>
+        {/* <SidebarWrapper> */}
+          <div className="marginTopTitle" style={{justifyContent:'center'}}>
+            <h1 style={{justifySelf:'center'}}>{title}</h1>
             <div className={style.bannerImgContainer}>
               <Img className={style.bannerImg} fluid={fluid} title={excerpt} alt={title} />
             </div>
             <article className={style.blogArticle} dangerouslySetInnerHTML={{ __html: html }} />
             <Comment pageCanonicalUrl={canonicalUrl} pageId={title} />
           </div>
-        </SidebarWrapper>
+        {/* </SidebarWrapper> */}
       </Layout>
     </Layout>
   );

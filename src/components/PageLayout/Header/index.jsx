@@ -41,11 +41,11 @@ export default () => {
                 Contact
               </Link>
             </li>
-            {/* <li className={style.navItem}>
+            <li className={style.navItem}>
               <Link to="/blog" onClick={toggleMenu} activeClassName={style.anchorActive}>
                 Blog
               </Link>
-            </li> */}
+            </li>
             {/* <li className={style.navItem}>
               <Link to="/tags" onClick={toggleMenu} activeClassName={style.anchorActive}>
                 Tags

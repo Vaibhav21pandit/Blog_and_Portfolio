@@ -1,13 +1,75 @@
 ---
-title: What are and how to use Observables in RxJS
-tags: [typescript, javascript, rxjs]
-date: 2018-12-30T05:25:44.226Z
-path: blog/top-7-rxjs-patterns
-cover: ./preview.png
-excerpt: Learn all that you need to know about Observables The following is an Observable that pushes the values `1`, `2`, `3` immediately (synchronously) when subscribed.
+title: From classifying objects to detecting them
+tags: [ObjectDetection,RCNN,ComputerVision,DeepLearning,Python]
+date: 2020-11-20
+path: blog/from-object-classification-to-detection
+cover: ./real_time_object_detection.jpg
+excerpt: The simplest explanation of basic Object detection with Deep Learning in Python
 ---
+<p align="center">
+Figure 1. Object Detection with YOLOv3
+</p>
+I've been working with Object Detection as long as I started exploring Computer Vision and building projects in my college but I never really documented what I learned so here's my attempt at laying out all that I know about Object Detection.I will be focusing on Object Detection with Deep Learning since it's all the rage these days but you can expect an article on Detection with core CV algos soon. 
 
-Observables are lazy Push collections of multiple values. They fill the missing spot in the following table:
+Since this is an overview it is going to be fairly theoretical, you do not need any programming experience but you should have a basic understanding of what a `CNN` is and a mild idea of how it works. So let's dive right in.
+
+**Object Classification vs Object Localization vs Object Detection**
+While Object Classification is the process of identifying what object is present in the image,Object localization on the other hand is determining the position of that classified object in the image.
+Object Detection is the process of identifying how many objects are in an Image/Video and what they are, for example you can expect from an Object detector to tell you that an image contains a Car, a child and a bicycle along with their position in the image and depending on how robust and accurate it is, there might just be all of these things present in that image at those positions.
+<p align="center">
+<img width="300" height="300" src='https://cdn.analyticsvidhya.com/wp-content/uploads/2019/08/Screenshot-from-2019-08-02-16-50-12.png'>
+</p>
+<p align="center">
+Figure 2. Object Localization vs Object Detection
+</p>
+
+Now let's explore the theory behind how these detectors work. When an image is fed to a `CNN`, it outputs which object it thinks is present in that image but is not able to tell you where the object lies within that image, this is where ODs* come in. Apart from predicting which objects are present, they also output the bounding box co-ordinates for those objects.We will first look at the most basic algorithm implemented for this task, it involves Sliding Window convolutions and extraction of regions -> `CNN` classification of extracted regions -> discarding less probable bounding box co-ordinates for the same object.
+
+Now we should walk through the above steps sequentially. 
+
+1.) We use sliding windows to extract different portions of the image,for this we go over the images  in strides and extract the respective portion.This part is called Region of Interest(RoI) extraction 
+
+2.) This extracted portion is then fed to a trained** `CNN` for classification (This the only part where Deep Learning is used in our simple Detector) and the predictions,confidence score and bounding box co-ordinates for each portion stored in a dictionary (hashmap for non-Pythonistas). This is the Object Classification part.
+
+3.) Once we have all the outputs and predictions, we will notice that there are multiple bounding boxes for each object in the image since many sliding windows may have extracted different portions of the same object and the `CNN` has correctly classified them. At this point we discard the boxes with less confidence scores ad for each object detected only keep the box with highest score.This is achieved via an algorithm called `Non-Max suppression`  
+
+So now we have our *Theoretical* little Object Detector ready and working and say it works well but there's always room for improvement, so we look for potential performance leaks in our little detector.
+
+The **First** problem with the above approach is fixed size, say we have an object bigger than the size of the sliding window, then none of the extracted portions will contain the whole object and the `CNN` may not classify it correctly. To solve the above problem we use a technique called the ```Image Pyramid```. It refers to different variants of image that have different sizes with the smallest one on the top and the lowest having the biggest(original) size which, if you try to visualize, looks like a pyramid, see  figure 1.
+
+<p align="center">
+<img width="300" height="300" src='./Image_Pyramid.jpg'>
+</p>
+<p align="center">
+Figure 3. `Image Pyramids` with scaling_factor=0.5
+</p>
+<!-- ![Image_Pyramids with scaling_factor=0.5](./Image_Pyramid.jpg) -->
+
+The **Second** thing as we can see is that we are classifying all the extracted portions of an image most of these portions may not contain the object so we are classifying useless regions (see Figure 2) and since a forward pass of our `CNN` is not cheap, it consumes a lot of time in doing so. Also the process of making an `Image pyramid` adds additional overhead. One thing we can do to minimize this overhead is to break down the image into segments that may or may not contain an object, extract RoI from only those segments which contain an object and discard the rest.For this Segment classification the simplest algorithm we have is called `selective search`. In fact this Idea was the basis for `RCNN` and is called Region Proposal, though it was not implemented with the help of `selective search`.
+
+<p align="center">
+<img width="300" height="300" src='./Object_Detection_empty.png'>
+</p>
+<p align="center">
+Figure 4. Areas with no objects in the images  
+</p>
+
+**Thirdly**, Our implementation has a lot of fixed parts like the scale of `Image pyramids` and the filter size for RoI extraction and is not trainable i.e we cannot tune the classifier or the RoI extraction parts based on the amount of error it makes when detecting objects in images.
+
+This part was just about building an intuition of Object Detection fundamentals so that we can appreciate the different architectures of popular OD approaches. In the part 2 of this blog we will look at `RCNN` architectures and its code.
+
+*OD is the abbreviation for Object Detection or Object Detector as the usage be.
+
+**`CNN` can be trained on ImageNet or CIFAR-100 or any other Image classification dataset but note that this will affect the performance of our detector as there are more classes in some of the datasets hence we can detect more classes of objects with these datasets.
+
+Figure 1 source - "https://cdn.analyticsvidhya.com/wp-content/uploads/2019/08/real_time_object_detection.jpg" \
+Figure 2 source - "https://cdn.analyticsvidhya.com/wp-content/uploads/2019/08/Screenshot-from-2019-08-02-16-50-12.png
+" \
+Figure 3 source - "https://en.wikipedia.org/wiki/File:Image_pyramid.svg" \
+Figure 4 source - "https://www.coursera.org/lecture/convolutional-neural-networks/optional-region-proposals-aCYZv"
+
+
+<!-- Observables are lazy Push collections of multiple values. They fill the missing spot in the following table:
 
 | | Single | Multiple |
 | --- | --- | --- |
@@ -433,7 +495,7 @@ function subscribe(subscriber) {
     subscriber.next('hi');
   }, 1000);
 
-  return function unsubscribe() {
+  return function unsubscribe() { 
     clearInterval(intervalId);
   };
 }
@@ -444,4 +506,4 @@ const unsubscribe = subscribe({next: (x) => console.log(x)});
 unsubscribe(); // dispose the resources
 ```
 
-The reason why we use Rx types like Observable, Observer, and Subscription is to get safety (such as the Observable Contract) and composability with Operators.
+The reason why we use Rx types like Observable, Observer, and Subscription is to get safety (such as the Observable Contract) and composability with Operators. -->
