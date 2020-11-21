@@ -1,6 +1,6 @@
 ---
 title: From classifying objects to detecting them
-tags: [ObjectDetection,RCNN,ComputerVision,DeepLearning,Python]
+tags: [python,ObjectDetection,CNN,DeepLearning,ComputerVision]
 date: 2020-11-20
 path: blog/from-object-classification-to-detection
 cover: ./real_time_object_detection.jpg
