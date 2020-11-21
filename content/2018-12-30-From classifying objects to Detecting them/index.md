@@ -2,7 +2,7 @@
 title: From classifying objects to detecting them
 tags: [ObjectDetection,RCNN,ComputerVision,DeepLearning,Python]
 date: 2020-11-20
-path: blog/top-7-rxjs-patterns
+path: blog/from-object-classification-to-detection
 cover: ./real_time_object_detection.jpg
 excerpt: The simplest explanation of basic Object detection with Deep Learning in Python
 ---

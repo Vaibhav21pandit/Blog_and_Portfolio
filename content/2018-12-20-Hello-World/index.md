@@ -1,6 +1,6 @@
 ---
 title: "Musings of a Programmer"
-path: blog/hello-world-rolwins-first-blog
+path: blog/musings-of-a-programmer
 tags: [blog,Computer Vision,Deep Learning,React Native]
 cover: ./Hi.png
 date: 2020-11-20
