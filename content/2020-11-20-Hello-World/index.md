@@ -3,7 +3,7 @@ title: "Musings of a Programmer"
 path: blog/musings-of-a-programmer
 tags: [blog,Computer Vision,DeepLearning,ReactNative]
 cover: ./Hi.png
-date: 2020-11-20
+date: 2020-11-19
 excerpt: "My attempt at documenting what I know about technology and other stuff"
 ---
 
