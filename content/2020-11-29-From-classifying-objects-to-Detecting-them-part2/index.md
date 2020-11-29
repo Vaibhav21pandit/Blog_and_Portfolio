@@ -1,72 +1,106 @@
 ---
-title: From classifying objects to detecting them
+title: From classifying objects to detecting them Part2
 tags: [python,ObjectDetection,CNN,DeepLearning,ComputerVision]
-date: 2020-11-20
-path: blog/from-object-classification-to-detection
-cover: ./real_time_object_detection.jpg
-excerpt: The simplest explanation of basic Object detection with Deep Learning in Python
+date: 2020-11-30
+path: blog/from-object-classification-to-detection-part2
+cover: ./cover.png
+excerpt: Explainer for Non Maximum Suppression and Intersection over Union
 ---
 <p align="center">
-Figure 1. Object Detection with YOLOv3
+Figure 1. Non Maximum Supression Results
 </p>
-I've been working with Object Detection as long as I started exploring Computer Vision and building projects in my college but I never really documented what I learned so here's my attempt at laying out all that I know about Object Detection.I will be focusing on Object Detection with Deep Learning since it's all the rage these days but you can expect an article on Detection with core CV algos soon. 
 
-Since this is an overview it is going to be fairly theoretical, you do not need any programming experience but you should have a basic understanding of what a `CNN` is and a mild idea of how it works. So let's dive right in.
+After the whole detection process was completed in the last post we were left with the co-ordinates of the bounding boxes with the highest confidence scores but how do we determine the accuracy of our detector? well this is where IoU comes to our rescue. Let's say we have the ground truth bounding boxes and we want to compare the predicted boxes against those, what we do in `IoU` is simple: we take the intersection area and divide it by the sum of the area of both the boxes.
 
-**Object Classification vs Object Localization vs Object Detection**
-While Object Classification is the process of identifying what object is present in the image,Object localization on the other hand is determining the position of that classified object in the image.
-Object Detection is the process of identifying how many objects are in an Image/Video and what they are, for example you can expect from an Object detector to tell you that an image contains a Car, a child and a bicycle along with their position in the image and depending on how robust and accurate it is, there might just be all of these things present in that image at those positions.
+Let's see it visually.
 <p align="center">
-<img width="300" height="300" src='https://cdn.analyticsvidhya.com/wp-content/uploads/2019/08/Screenshot-from-2019-08-02-16-50-12.png'>
+<img width="300" height="300" src='https://images3.programmersought.com/522/48/48be7448f1a7b119a7f3b6af070e252a.png'>
 </p>
 <p align="center">
-Figure 2. Object Localization vs Object Detection
+Figure 2. Two Bounding boxes for an object and their IoU
 </p>
 
-Now let's explore the theory behind how these detectors work. When an image is fed to a `CNN`, it outputs which object it thinks is present in that image but is not able to tell you where the object lies within that image, this is where ODs* come in. Apart from predicting which objects are present, they also output the bounding box co-ordinates for those objects.We will first look at the most basic algorithm implemented for this task, it involves Sliding Window convolutions and extraction of regions -> `CNN` classification of extracted regions -> discarding less probable bounding box co-ordinates for the same object.
-
-Now we should walk through the above steps sequentially. 
-
-1.) We use sliding windows to extract different portions of the image,for this we go over the images  in strides and extract the respective portion.This part is called Region of Interest(RoI) extraction 
-
-2.) This extracted portion is then fed to a trained** `CNN` for classification (This the only part where Deep Learning is used in our simple Detector) and the predictions,confidence score and bounding box co-ordinates for each portion stored in a dictionary (hashmap for non-Pythonistas). This is the Object Classification part.
-
-3.) Once we have all the outputs and predictions, we will notice that there are multiple bounding boxes for each object in the image since many sliding windows may have extracted different portions of the same object and the `CNN` has correctly classified them. At this point we discard the boxes with less confidence scores ad for each object detected only keep the box with highest score.This is achieved via an algorithm called `Non-Max suppression`  
-
-So now we have our *Theoretical* little Object Detector ready and working and say it works well but there's always room for improvement, so we look for potential performance leaks in our little detector.
-
-The **First** problem with the above approach is fixed size, say we have an object bigger than the size of the sliding window, then none of the extracted portions will contain the whole object and the `CNN` may not classify it correctly. To solve the above problem we use a technique called the ```Image Pyramid```. It refers to different variants of image that have different sizes with the smallest one on the top and the lowest having the biggest(original) size which, if you try to visualize, looks like a pyramid, see  figure 1.
+I believe you will better visualize the intersection and union area in the image with my sloppy MS paint skills:
 
 <p align="center">
-<img width="300" height="300" src='./Image_Pyramid.jpg'>
+<img width="300" height="300" src='./intersection.png'>
 </p>
 <p align="center">
-Figure 3. `Image Pyramids` with scaling_factor=0.5
+Figure 3. Intersection of the two boxes
 </p>
-<!-- ![Image_Pyramids with scaling_factor=0.5](./Image_Pyramid.jpg) -->
-
-The **Second** thing as we can see is that we are classifying all the extracted portions of an image most of these portions may not contain the object so we are classifying useless regions (see Figure 2) and since a forward pass of our `CNN` is not cheap, it consumes a lot of time in doing so. Also the process of making an `Image pyramid` adds additional overhead. One thing we can do to minimize this overhead is to break down the image into segments that may or may not contain an object, extract RoI from only those segments which contain an object and discard the rest.For this Segment classification the simplest algorithm we have is called `selective search`. In fact this Idea was the basis for `RCNN` and is called Region Proposal, though it was not implemented with the help of `selective search`.
-
-<p align="center">
-<img width="300" height="300" src='./Object_Detection_empty.png'>
+<p>
+<img width="300" height="300" src='./union.png'>
 </p>
 <p align="center">
-Figure 4. Areas with no objects in the images  
+Figure 4. Union of the two boxes
 </p>
 
-**Thirdly**, Our implementation has a lot of fixed parts like the scale of `Image pyramids` and the filter size for RoI extraction and is not trainable i.e we cannot tune the classifier or the RoI extraction parts based on the amount of error it makes when detecting objects in images.
+The next question is now that we have the IoU equation with us, how do we compute the required areas? This is rather simple, we have two bboxes as our input Box1[x11,y11,x21,y21] and Box2[x12,y12,x22,y22] then the co-ordinates of the intersection box look like Intersection[x1,y1,x2,y2]=Intersection[max(x11,x12),max(y11,y12),min(x21,x22),min(y21,y22)], We do not have to worry about the co-ordinates of the Union since the equation requires areas as inputs we can directly calculate the area of the union using the other coordinates we know. After we have the co-ordinates we just need to determine the length of the sides and multiply LengthxWidth i.e 
 
-This part was just about building an intuition of Object Detection fundamentals so that we can appreciate the different architectures of popular OD approaches. In the part 2 of this blog we will look at `RCNN` architectures and its code.
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?area(Intersection)=&space;abs((x2-x1)&space;*&space;(y2-y1))" title="area(Intersection)= abs((x2-x1) * (y2-y1))" align="center" />
+</p>
+<br />
+<br />
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?area(Box1)=abs((x21-x11)*(y11-y21))" title="area(Box1)=abs((x21-x11)*(y11-y21))" />
+</p>
+<br />
+<br />
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?area(Box2)=abs((x22-x12)*(y22-y12))" title="area(Box2)=abs((x22-x12)*(y22-y12))" />
+</p>
+<br />
+<br />
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?area(Union)=area(Box1)&plus;area(Box2)-area(intersection)" title="area(Union)=area(Box1)+area(Box2)-area(intersection)" />
+</p>
+<br />
+<br />
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?IoU=area(Intesection)/area(Union)" title="IoU=area(Intesection)/area(Union)" />
+</p>
 
-*OD is the abbreviation for Object Detection or Object Detector as the usage be.
+Hence we have calculated the metric `IoU` to determine how good our final bounding boxes are against the corresponding ground truths.Next we will see the application of this metric in Non-Max Suppression.
 
-**`CNN` can be trained on ImageNet or CIFAR-100 or any other Image classification dataset but note that this will affect the performance of our detector as there are more classes in some of the datasets hence we can detect more classes of objects with these datasets.
 
-Figure 1 source - "https://cdn.analyticsvidhya.com/wp-content/uploads/2019/08/real_time_object_detection.jpg" \
-Figure 2 source - "https://cdn.analyticsvidhya.com/wp-content/uploads/2019/08/Screenshot-from-2019-08-02-16-50-12.png
-" \
-Figure 3 source - "https://en.wikipedia.org/wiki/File:Image_pyramid.svg" \
-Figure 4 source - "https://www.coursera.org/lecture/convolutional-neural-networks/optional-region-proposals-aCYZv"
+<!-- <h1>Non Max Supression<h1> -->
+<p align="center">
+<h2 align='center'>
+Non Maximum Suppression
+</h2>
+</p>
+
+In the previous post we discussed how the classifier gave us more than one bounding box for the same object, but this can be problematic as it can be interpreted as there are n objects of that class in our image while actually there is only one. To deal with this problem we use a method called non maximum suppression where we find a single bounding box for its corresponding class.
+Let's see how to go about it,  
+
+Say we have the following image with a person and a dog in it, we can see numerous bounding boxes around each object and the label for the box along with the probability the model assigns to the box of having that object inside it. 
+
+<p align="center">
+<img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/07/Screenshot-from-2020-07-27-20-53-06.png" />
+</p>
+<p align="center">
+Figure 5. Numerous bounding boxes after classification step.
+</p>
+
+Now our non-max suppression function should return only the box with the highest probability[at this point since we do not just rely on the probability output of the model] and to do that we use our IoU metric.We select the bbox with the highest prob_score and then iterate over the rest of the bboxes, finding IoU with the highest probability box and if the threshold is > IoU threshold (which is a hyperparameter) we discard that particular box.Repeat the previous step until we are left with the final box for our object. One important thing is this process is repeated for all the classes that are detected in that image individually.
+
+<p align="center">
+<img src="./NMS.png" />
+</p>
+<p align="center">
+Figure 4. Steps in NMS
+</p>
+
+<p align="center">
+<img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/07/Screenshot-from-2020-07-27-21-00-40.png" />
+</p>
+
+<p align="center">
+Figure 4. Final bounding boxes after NMS
+</p>
+
+
 
 
 <!-- Observables are lazy Push collections of multiple values. They fill the missing spot in the following table:
