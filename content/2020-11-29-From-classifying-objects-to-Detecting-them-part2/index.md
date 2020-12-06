@@ -1,6 +1,6 @@
 ---
 title: From classifying objects to detecting them Part2
-tags: [python,ObjectDetection,CNN,DeepLearning,ComputerVision]
+tags: [Python,ObjectDetection,CNN,DeepLearning,ComputerVision]
 date: 2020-11-30
 path: blog/from-object-classification-to-detection-part2
 cover: ./cover.png
