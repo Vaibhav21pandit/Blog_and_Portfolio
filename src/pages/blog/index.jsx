@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Layout, Row, Col } from 'antd';
 import Header from '../../components/PageLayout/Header';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 import SidebarWrapper from '../../components/PageLayout/Sidebar';
 import PostCard from '../../components/PostCard';
@@ -37,6 +38,7 @@ const Blog = ({ data }) => (
         </Row>
       </SidebarWrapper>
     </Layout>
+    
   </Layout>
 );
 
