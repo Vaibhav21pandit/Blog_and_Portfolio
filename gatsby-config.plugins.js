@@ -16,8 +16,8 @@ module.exports = [
   {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      name: 'Rolwin Reevan',
-      short_name: 'Rolwin Reevan',
+      name: 'Vaibhav Sharma',
+      short_name: 'Vaibhav Sharma',
       start_url: '/',
       background_color: '#304CFD',
       theme_color: '#304CFD',
@@ -98,8 +98,15 @@ module.exports = [
     options: {
       // Setting a color is optional.
       color: 'black',
-      // Disable the loading spinner.
+      // Disable the loading spinner. 
       showSpinner: true,
     },
   },
+  {
+    resolve: `gatsby-plugin-disqus`,
+    options: {
+        shortname: `vaibhavpandit-space`
+    }
+},                                                               
+
 ];

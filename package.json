@@ -20,6 +20,7 @@
     "gatsby": "^2.20.7",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-antd": "^2.1.0",
+    "gatsby-plugin-disqus": "^1.2.2",
     "gatsby-plugin-google-analytics": "^2.2.2",
     "gatsby-plugin-i18n": "^1.0.1",
     "gatsby-plugin-less": "^3.0.19",
@@ -58,6 +59,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rolwin100/rolwinreevan_gatsby_blog"
+    "url": "https://github.com/vaibhav21pandit/blog_and_portfolio"
   }
 }

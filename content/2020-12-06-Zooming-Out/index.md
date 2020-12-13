@@ -4,7 +4,7 @@ tags: [Non-Technical]
 date: 2020-12-06
 path: blog/Zooming-out
 cover: ./cover.jpg
-excerpt: Implementation of RCNN in Tensorflow
+excerpt: An excerpt and a lesson
 ---
 
 This is a small non technical post about a mental model around solving problems.Steve Jobs  once said:
@@ -18,3 +18,7 @@ Another example I noticed after this incident was that when adding a new compone
 These are examples from my programming experience I'm sure there are lots of others in the daily life.But if you want to take away a lesson from this post I'd want it to be this-
 
 **Don't optimize things around the pieces involved in the process of the task but zoom out and optimize the whole process around the desired results.**
+
+This is it for this article,
+
+Goodbye, for now 👋.
