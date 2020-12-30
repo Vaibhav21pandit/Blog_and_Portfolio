@@ -12,7 +12,7 @@ const pageText = {
     Other than Deep Learning I love building Web and Mobile apps in React/React Native.`,
   paraTwo: `Currently my professional experience mainly includes Computer Vision and I also
     have hands on experience working with cloud infrastructures like AWS/GCP. I have deployed numerous CV applications
-    both personal and professional, keeping scalability in mind. Flask and Django are some of the
+    both personal and professional. Flask and Django are some of the
     tools I use for Deployment. I believe I'm a fast learner and am always ready to try new things out.`,
 };
 
