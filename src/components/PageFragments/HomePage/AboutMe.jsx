@@ -6,14 +6,11 @@ import { stripTags, domHtml } from '../../../utils/stripTags';
 import SEO from '../../Seo';
 
 const pageText = {
-  paraOne: `Hello !! My name is Vaibhav Sharma. I'm a Deep Learning Engineer with experience in Computer
-    Vision and applied knowledge in NLP & Audio Processing.
-    A perpetual explorer of the DL realm, I like to experiment with different algorithms and frameworks for CV and NLP. 
-    Other than Deep Learning I love building Web and Mobile apps in React/React Native.`,
-  paraTwo: `Currently my professional experience mainly includes Computer Vision and I also
-    have hands on experience working with cloud infrastructures like AWS/GCP. I have deployed numerous CV applications
-    both personal and professional. Flask and Django are some of the
-    tools I use for Deployment. I believe I'm a fast learner and am always ready to try new things out.`,
+  paraOne: `Hey there! My name is Vaibhav Sharma. I currently work as a Software Developer with focus on machine learning and NLP. 
+    Prior to this I worked as a Research Engineer, where I built and deployed Computer Vision applications for a healthcare startup. 
+    Other than ML/Data Science I have tinkered with building Web and Mobile apps in React/React Native.`,
+  paraTwo: `I also have hands on experience of working with cloud infrastructure like AWS/Heroku. I have deployed numerous CV applications
+    both personal and professional. Flask and Django are some of the tools I use for Deployment. I believe I'm a fast learner and am always ready to try new things out.`,
 };
 
 const AboutMe = () => {
@@ -61,10 +58,10 @@ const AboutMe = () => {
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
           <AboutTile
-            img="mobile.png"
-            alt="bike image"
-            textH4="Builds Mobile Apps"
-            textH3="Deep Learning on Edge Devices"
+            img="python.png"
+            alt="Python Image"
+            textH4="Love Python"
+            textH3="My go-to language"
           />
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
